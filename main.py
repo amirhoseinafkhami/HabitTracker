@@ -1,18 +1,28 @@
 import os
 import sqlite3
 import datetime
+<<<<<<< HEAD
 from zoneinfo import ZoneInfo
 from dotenv import load_dotenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application, CommandHandler, CallbackQueryHandler,
+=======
+from dotenv import load_dotenv
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import (
+    Application, CommandHandler, CallbackQueryHandler, 
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
     ContextTypes, ConversationHandler, MessageHandler, filters
 )
 
 # بارگذاری توکن از فایل .env
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
+<<<<<<< HEAD
 PROXY = os.getenv("PROXY_URL")  # اختیاری، مثلا http://127.0.0.1:10809
+=======
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
 
 # ==================== بخش دیتابیس ====================
 def init_db():
@@ -23,6 +33,7 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY)''')
     # جدول عادت‌ها
     c.execute('''CREATE TABLE IF NOT EXISTS habits (
+<<<<<<< HEAD
                     habit_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     name TEXT)''')
@@ -35,6 +46,17 @@ def init_db():
     # جلوگیری از ثبت تکراری برای یک عادت در یک روز
     c.execute('''CREATE UNIQUE INDEX IF NOT EXISTS idx_log
                  ON logs(habit_id, date)''')
+=======
+                    habit_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                    user_id INTEGER, 
+                    name TEXT)''')
+    # جدول ثبت روزانه (لاگ)
+    c.execute('''CREATE TABLE IF NOT EXISTS logs (
+                    log_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                    habit_id INTEGER, 
+                    date TEXT, 
+                    status INTEGER)''')
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
     conn.commit()
     conn.close()
 
@@ -44,6 +66,7 @@ init_db()
 # ==================== حالت‌های مکالمه ====================
 ASK_HABIT_NAME = 1
 
+<<<<<<< HEAD
 # ==================== توابع کمکی ====================
 def get_streak(habit_id):
     """تعداد روزهای متوالی انجام یک عادت"""
@@ -70,10 +93,53 @@ def build_today_view(user_id, date):
     c.execute('''SELECT h.habit_id, h.name, l.status FROM habits h
                  LEFT JOIN logs l ON h.habit_id = l.habit_id AND l.date = ?
                  WHERE h.user_id = ?''', (date, user_id))
+=======
+# ==================== دستورات ربات ====================
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    conn = sqlite3.connect('habits.db')
+    c = conn.cursor()
+    c.execute("INSERT OR IGNORE INTO users (user_id) VALUES (?)", (user_id,))
+    conn.commit()
+    conn.close()
+    
+    await update.message.reply_text(
+        "سلام! به ربات ردیاب عادت خوش آمدید. 🌟\n\n"
+        "دستورات موجود:\n"
+        "🔹 /addhabit : افزودن عادت جدید\n"
+        "🔹 /today : مشاهده و ثبت عادت‌های امروز"
+    )
+
+async def add_habit_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("لطفاً نام عادت جدید را وارد کنید (مثلاً: ورزش، مطالعه، زبان انگلیسی):")
+    return ASK_HABIT_NAME
+
+async def add_habit_save(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    habit_name = update.message.text
+    conn = sqlite3.connect('habits.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO habits (user_id, name) VALUES (?, ?)", (user_id, habit_name))
+    conn.commit()
+    conn.close()
+    await update.message.reply_text(f"عادت «{habit_name}» با موفقیت اضافه شد! ✅")
+    return ConversationHandler.END
+
+async def today_habits(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    today = datetime.date.today().isoformat()
+    
+    conn = sqlite3.connect('habits.db')
+    c = conn.cursor()
+    c.execute('''SELECT h.habit_id, h.name, l.status FROM habits h 
+                 LEFT JOIN logs l ON h.habit_id = l.habit_id AND l.date = ?
+                 WHERE h.user_id = ?''', (today, user_id))
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
     habits = c.fetchall()
     conn.close()
 
     if not habits:
+<<<<<<< HEAD
         return "شما هنوز هیچ عادتی تعریف نکرده‌اید. از /addhabit استفاده کنید.", None
 
     done = sum(1 for _, _, s in habits if s == 1)
@@ -134,16 +200,33 @@ async def today_habits(update: Update, context: ContextTypes.DEFAULT_TYPE):
     today = datetime.date.today().isoformat()
     text, markup = build_today_view(update.effective_user.id, today)
     await update.message.reply_text(text, reply_markup=markup)
+=======
+        await update.message.reply_text("شما هنوز هیچ عادتی تعریف نکرده‌اید. از /addhabit استفاده کنید.")
+        return
+
+    keyboard = []
+    for habit_id, name, status in habits:
+        status_icon = "✅" if status == 1 else "❌"
+        keyboard.append([InlineKeyboardButton(f"{status_icon} {name}", callback_data=f"toggle_{habit_id}_{today}")])
+    
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text("وضعیت عادت‌های امروز شما:", reply_markup=reply_markup)
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
 
 # ==================== مدیریت کلیک روی دکمه‌ها ====================
 async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
     data = query.data
     if data.startswith("toggle_"):
         _, habit_id, date = data.split("_")
         habit_id = int(habit_id)
+<<<<<<< HEAD
 
         conn = sqlite3.connect('habits.db')
         c = conn.cursor()
@@ -178,6 +261,38 @@ async def daily_reminder(context: ContextTypes.DEFAULT_TYPE):
         if markup:  # فقط اگر کاربر عادت دارد
             await context.bot.send_message(
                 uid, "⏰ یادآوری شبانه!\n\n" + text, reply_markup=markup)
+=======
+        
+        conn = sqlite3.connect('habits.db')
+        c = conn.cursor()
+        c.execute("SELECT status FROM logs WHERE habit_id = ? AND date = ?", (habit_id, date))
+        row = c.fetchone()
+        
+        # تغییر وضعیت (اگر نبود ثبت کن، اگر بود برعکسش کن)
+        if row is None:
+            c.execute("INSERT INTO logs (habit_id, date, status) VALUES (?, ?, 1)", (habit_id, date))
+        else:
+            new_status = 0 if row[0] == 1 else 1
+            c.execute("UPDATE logs SET status = ? WHERE habit_id = ? AND date = ?", (new_status, habit_id, date))
+        
+        conn.commit()
+        
+        # به‌روزرسانی کیبورد
+        user_id = query.from_user.id
+        c.execute('''SELECT h.habit_id, h.name, l.status FROM habits h 
+                     LEFT JOIN logs l ON h.habit_id = l.habit_id AND l.date = ?
+                     WHERE h.user_id = ?''', (date, user_id))
+        habits = c.fetchall()
+        conn.close()
+
+        keyboard = []
+        for hid, name, status in habits:
+            status_icon = "✅" if status == 1 else "❌"
+            keyboard.append([InlineKeyboardButton(f"{status_icon} {name}", callback_data=f"toggle_{hid}_{date}")])
+        
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await query.edit_message_reply_markup(reply_markup=reply_markup)
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
 
 # ==================== اجرای اصلی برنامه ====================
 def main():
@@ -185,12 +300,16 @@ def main():
         print("خطا: توکن ربات پیدا نشد! فایل .env را بررسی کنید.")
         return
 
+<<<<<<< HEAD
     builder = (Application.builder().token(TOKEN)
                .connect_timeout(30).read_timeout(30)
                .write_timeout(30).pool_timeout(30))
     if PROXY:
         builder = builder.proxy(PROXY).get_updates_proxy(PROXY)
     application = builder.build()
+=======
+    application = Application.builder().token(TOKEN).build()
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
 
     # مکالمه برای گرفتن نام عادت جدید
     conv_handler = ConversationHandler(
@@ -207,14 +326,21 @@ def main():
     application.add_handler(CommandHandler("today", today_habits))
     application.add_handler(CallbackQueryHandler(button_callback))
 
+<<<<<<< HEAD
     # یادآور روزانه ساعت ۲۱:۰۰ به وقت تهران
     application.job_queue.run_daily(
         daily_reminder,
         time=datetime.time(21, 0, tzinfo=ZoneInfo("Asia/Tehran"))
     )
 
+=======
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
     print("ربات در حال اجراست...")
     application.run_polling()
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> acb04d9db666de947db8eea340c8c4d3ad3d37fa
