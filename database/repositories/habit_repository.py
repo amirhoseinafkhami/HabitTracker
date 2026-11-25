@@ -43,6 +43,36 @@ def delete_habit(habit_id: int, user_id: int):
         )
 
         return cursor.rowcount
+def get_daily_habits(user_id: int, today: str):
+    with get_connection() as conn:
+        cursor = conn.execute(
+            """
+            SELECT habits.habit_id,
+            habits.name,
+            COALESCE(logs.status, 0) AS status
+            FROM habits
+            LEFT JOIN logs
+            ON habits.habit_id = logs.habit_id
+            AND logs.date = ?
+            WHERE habits.user_id = ?
+            ORDER BY habits.habit_id DESC
+            """, (today, user_id)
+        )
 
-delete_habit(1, 123456)
-print(get_user_habits(123456))
+        return cursor.fetchall()
+
+def mark_habit(user_id: int, habit_id: int, today: str, status: int):
+    with get_connection() as conn:
+        cursor = conn.execute(
+            """
+            INSERT INTO logs (habit_id, date, status)
+            SELECT habit_id, ?, ?
+            FROM habits
+            WHERE habit_id = ? AND user_id = ?
+                
+            ON CONFLICT(habit_id, date)
+            DO UPDATE SET status = excluded.status
+            """,(today, status, habit_id, user_id)
+        )
+
+        return cursor.rowcount

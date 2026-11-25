@@ -1,41 +1,43 @@
-
 from services.habit_service import (
     add_habit,
-    get_habits,
-    remove_habit
+    get_daily_habits_service,
+    set_habit_status_service,
+    get_habits
 )
 
 user_id = 123456
 
-# 1. Test adding a habit
-print("Adding habit:")
-result = add_habit(user_id, "Reading")
-print(result)
+# 1. Create a test habit
+print("Creating test habit:")
+print(add_habit(user_id, "Test Habit"))
 
-# 2. Test adding an empty habit
-print("\nTesting empty habit:")
-result = add_habit(user_id, "   ")
-print(result)
-
-# 3. Test adding a long habit
-print("\nTesting long habit:")
-result = add_habit(user_id, "A" * 101)
-print(result)
-
-# 4. Test getting habits
-print("\nGetting habits:")
+# 2. Get user's habits
 habits = get_habits(user_id)
+
+print("\nUser habits:")
 
 for habit in habits:
     print(dict(habit))
 
-# 5. Test deleting a habit
+# 3. Select the first habit
 if habits:
     habit_id = habits[0]["habit_id"]
 
-    print("\nDeleting habit:")
-    print(remove_habit(user_id, habit_id))
+    # 4. Mark habit as completed
+    print("\nMarking habit as completed:")
+    print(set_habit_status_service(user_id, habit_id, 1))
 
-# 6. Test deleting a nonexistent habit
-print("\nDeleting nonexistent habit:")
-print(remove_habit(user_id, 999999))
+    # 5. Get daily habits
+    print("\nDaily habits:")
+
+    daily_habits = get_daily_habits_service(user_id)
+
+    for habit in daily_habits:
+        print(dict(habit))
+
+    # 6. Mark habit as incomplete
+    print("\nMarking habit as incomplete:")
+    print(set_habit_status_service(user_id, habit_id, 0))
+
+else:
+    print("No habits found!")

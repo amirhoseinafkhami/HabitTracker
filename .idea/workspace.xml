@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec6144a9-a874-4861-ad21-79240d1133c6" name="Changes" comment="this is the first commit i make and its all about starting the habit tracker bot which will be tracking our habits" />
+    <list default="true" id="ec6144a9-a874-4861-ad21-79240d1133c6" name="Changes" comment="this is the first commit i make and its all about starting the habit tracker bot which will be tracking our habits">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/handlers/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/handlers/callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/keyboards/habit_keyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/keyboards/habit_keyboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/repositories/habit_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/repositories/habit_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/habit_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/habit_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_habit_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_habit_service.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +23,7 @@
     </colors>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="21" />
+    <option name="cachedIndexableFilesCount" value="30" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -46,61 +53,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.3681728424644435" />
-      <entry key="MS500" value="2.58013535427242" />
-      <entry key="S2" value="4.916100759124227" />
-      <entry key="S5" value="6.257589237451195" />
-      <entry key="S10" value="9.374867099883014" />
-      <entry key="S30" value="28.918676743842433" />
-      <entry key="S60" value="46.86936604429141" />
-      <entry key="M2" value="62.14883274223821" />
-      <entry key="M5" value="83.76548793551973" />
-      <entry key="M10" value="114.49183319349068" />
-      <entry key="M15" value="139.77549800070625" />
-      <entry key="M30" value="197.81148839159752" />
-      <entry key="H1" value="300.1306030265" />
-      <entry key="H2" value="443.40958688703313" />
-      <entry key="H4" value="575.7075995142479" />
-      <entry key="D1" value="741.5323002829667" />
-      <entry key="W1" value="776.8783100996611" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="2.569074349188812E-96" />
+      <entry key="S5" value="9.292901810480572E-39" />
+      <entry key="S10" value="1.7227954989592043E-19" />
+      <entry key="S30" value="2.1766825599751367E-6" />
+      <entry key="S60" value="0.005434212545394375" />
+      <entry key="M2" value="0.31673472744175885" />
+      <entry key="M5" value="5.176257195369092" />
+      <entry key="M10" value="22.23521181400326" />
+      <entry key="M15" value="45.61296431088911" />
+      <entry key="M30" value="125.6923210992929" />
+      <entry key="H1" value="272.3036804760889" />
+      <entry key="H2" value="480.5879093136946" />
+      <entry key="H4" value="691.5461048010889" />
+      <entry key="D1" value="984.7504786115513" />
+      <entry key="W1" value="1051.3269619182975" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="6.444657910398023E-82" />
-      <entry key="MS500" value="5.778830734404821E-17" />
-      <entry key="S2" value="8.718865807630903E-5" />
-      <entry key="S5" value="0.023778474950541615" />
-      <entry key="S10" value="0.15420270733856015" />
-      <entry key="S30" value="0.5362461724873322" />
-      <entry key="S60" value="0.733385824984497" />
-      <entry key="M2" value="0.9557891035467136" />
-      <entry key="M5" value="3.377723252975239" />
-      <entry key="M10" value="10.484663791007359" />
-      <entry key="M15" value="17.420449303818785" />
-      <entry key="M30" value="32.233700004553235" />
-      <entry key="H1" value="48.72070901020639" />
-      <entry key="H2" value="64.55826064288085" />
-      <entry key="H4" value="76.78983282489331" />
-      <entry key="D1" value="90.68412328510034" />
-      <entry key="W1" value="93.51368112870338" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.000000862653667" />
+      <entry key="S60" value="1.0020803662470321" />
+      <entry key="M2" value="1.114650492683356" />
+      <entry key="M5" value="2.4737459931392327" />
+      <entry key="M10" value="5.6785161148539665" />
+      <entry key="M15" value="9.259839972440014" />
+      <entry key="M30" value="21.09538498346736" />
+      <entry key="H1" value="42.760089082276124" />
+      <entry key="H2" value="70.08711832020147" />
+      <entry key="H4" value="94.49248322554398" />
+      <entry key="D1" value="125.2243631340632" />
+      <entry key="W1" value="131.84929183026375" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2585192067425823" />
-      <entry key="MS500" value="2.50120645174419" />
-      <entry key="S2" value="4.867068220891425" />
-      <entry key="S5" value="6.249867568275383" />
-      <entry key="S10" value="9.490915681988916" />
-      <entry key="S30" value="29.415160787181044" />
-      <entry key="S60" value="47.57321930262299" />
-      <entry key="M2" value="63.08246906510355" />
-      <entry key="M5" value="87.10519295947235" />
-      <entry key="M10" value="124.91936875430916" />
-      <entry key="M15" value="157.13430938692673" />
-      <entry key="M30" value="229.98855677755094" />
-      <entry key="H1" value="348.8058226265192" />
-      <entry key="H2" value="507.93539178175854" />
-      <entry key="H4" value="652.4771505804997" />
-      <entry key="D1" value="832.2122439940904" />
-      <entry key="W1" value="870.391370473535" />
+      <entry key="MS100" value="1.8497789193634578E-9" />
+      <entry key="MS500" value="0.01792354725353383" />
+      <entry key="S2" value="0.36589459260684876" />
+      <entry key="S5" value="0.668871045749633" />
+      <entry key="S10" value="0.8178453678719669" />
+      <entry key="S30" value="0.93517260474802" />
+      <entry key="S60" value="0.9744644679327614" />
+      <entry key="M2" value="1.4123025832807827" />
+      <entry key="M5" value="7.629872979788125" />
+      <entry key="M10" value="27.884155093147125" />
+      <entry key="M15" value="54.836403325899305" />
+      <entry key="M30" value="146.74299141916882" />
+      <entry key="H1" value="315.01845534752266" />
+      <entry key="H2" value="550.6373231049199" />
+      <entry key="H4" value="786.0126443951176" />
+      <entry key="D1" value="1109.968963409336" />
+      <entry key="W1" value="1183.1753650060134" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -114,17 +121,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.check_database.executor": "Run",
     "Python.check_pywin32.executor": "Run",
     "Python.habit_repository.executor": "Run",
     "Python.main.executor": "Run",
     "Python.start.executor": "Run",
     "Python.test_habit_service.executor": "Run",
+    "Python.test_refresh.executor": "Run",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/habits-fsm",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
@@ -184,7 +193,10 @@
       <workItem from="1794816328428" duration="404000" />
       <workItem from="1794819078641" duration="404000" />
       <workItem from="1795382789882" duration="2840000" />
-      <workItem from="1795414255879" duration="7822000" />
+      <workItem from="1795414255879" duration="8164000" />
+      <workItem from="1795504038849" duration="2272000" />
+      <workItem from="1795603729108" duration="2320000" />
+      <workItem from="1795640522453" duration="1934000" />
     </task>
     <task id="LOCAL-00001" summary="this is the first commit i make and its all about starting the habit tracker bot which will be tracking our habits">
       <option name="closed" value="true" />
@@ -243,10 +255,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="this is the first commit i make and its all about starting the habit tracker bot which will be tracking our habits" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HabitTracker1$test_habit_service.coverage" NAME="test_habit_service Coverage Results" MODIFIED="1795419708067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HabitTracker1$test_habit_service.coverage" NAME="test_habit_service Coverage Results" MODIFIED="1795605527265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HabitTracker1$test_refresh.coverage" NAME="test_refresh Coverage Results" MODIFIED="1795641549559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HabitTracker1$habit_repository.coverage" NAME="habit_repository Coverage Results" MODIFIED="1795415265410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database/repositories" />
-    <SUITE FILE_PATH="coverage/HabitTracker1$main.coverage" NAME="main Coverage Results" MODIFIED="1795422705297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HabitTracker1$main.coverage" NAME="main Coverage Results" MODIFIED="1795641843505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HabitTracker1$start.coverage" NAME="start Coverage Results" MODIFIED="1795420976344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bot/handlers" />
     <SUITE FILE_PATH="coverage/HabitTracker1$check_pywin32.coverage" NAME="check_pywin32 Coverage Results" MODIFIED="1795419586926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HabitTracker1$check_database.coverage" NAME="check_database Coverage Results" MODIFIED="1795605373736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
